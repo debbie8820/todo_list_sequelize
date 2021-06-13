@@ -7,21 +7,23 @@ const User = db.User
 module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ where: { email } })
       .then((user) => {
         if (!user) {
-          console.log('此 Email 尚未註冊')
+          req.flash('danger_msg', '此 Email 尚未註冊')
           return done(null, false)
         }
         return bcrypt
           .compare(password, user.password)
           .then((isMatch) => {
             if (isMatch) return done(null, user)
-            return done(null, false, { message: 'Email or Password incorrect.' })
+            req.flash('danger_msg', '信箱或密碼錯誤')
+            return done(null, false)
           })
           .catch(err => done(err, null))
       })
+      .catch(err => done(err, null))
   }))
   passport.serializeUser((user, done) => {
     done(null, user.id);
