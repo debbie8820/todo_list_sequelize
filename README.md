@@ -2,9 +2,9 @@
 
 運用MySQL及其ORM Sequelize進行操作，在Node.js打造的備忘清單<br>
 
-<img alt="homepage" src="https://github.com/debbie8820/todo_list_sequelize/blob/main/img/home.jpg">
+<img alt="homepage" src="https://github.com/debbie8820/todo_list_sequelize/blob/main/img/homepage.jpg">
 
-<img alt="homepage" src="https://github.com/debbie8820/todo_list_sequelize/blob/main/img/login.jpg">
+<img alt="homepage" src="https://github.com/debbie8820/todo_list_sequelize/blob/main/img/loginpage.jpg">
 
 ### 主要功能
 + 使用者驗證
@@ -40,7 +40,7 @@
 3. 匯入種子資料並啟動伺服器
 
    ```
-   $ npm run seed
+   $ npx sequelize db:seed:all
    $ npm run dev
    ```
 
