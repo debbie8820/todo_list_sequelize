@@ -15,7 +15,7 @@ router.post('/login', (req, res, next) => {
   const { email, password } = req.body
   if (!email || !password) {
     req.flash('warning_msg', '請填寫所有欄位')
-    return res.render('login', { email, password })
+    return res.redirect('login')
   }
   next()
 },
@@ -64,7 +64,7 @@ router.post('/register', (req, res) => {
 router.get('/logout', (req, res) => {
   req.logout()
   req.flash('success_msg', '你已成功登出')
-  return res.redirect('/')
+  res.redirect('/users/login')
 })
 
 module.exports = router
